@@ -6,13 +6,13 @@ How this project was built:
 * npm init
 * npm i -s restify bunyan restify-bunyan-logger socket.io delivery
 * Install Jasmine globally 
-** npm install -g jasmine
+* npm install -s jasmine
 
 ### socket.io ###
 
 Tester: 
-* http://localhost:8000/socket.io/socket.io.js 
 * http://amritb.github.io/socketio-client-tool/#
+* http://localhost:8000/
 
 
 ### Online References ###

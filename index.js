@@ -4,7 +4,7 @@ const name = 'picklerick';
 const log = new Logger({name: name});
 const restifyBunyanLogger = require('restify-bunyan-logger');
 const server = restify.createServer({name, log});
-server.on('after', restifyBunyanLogger());
+// server.on('after', restifyBunyanLogger());
 const socketio = require('socket.io');
 const dl = require('delivery');
 const fs = require('fs');
@@ -26,11 +26,15 @@ io.on('connection', socket => {
   });
 
   console.log('a user connected');
+  socket.emit('hello', { hello: 'world' });
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
   socket.on('chat message', msg => {
     console.log('message: ' + msg);
+  });
+  socket.on('file drop', msg => {
+    console.log('dropping: ' + msg);
   });
 });
 
@@ -93,6 +97,7 @@ server.put(contactRoute, contactPutHandler);
 server.del(contactRoute, contactDeleteHandler);
 
 server.pre(function (req, res, next) {
+  console.log("We are in pre");
   server.log.info({req}, 'no req.log in pre handler');
   next();
 });
