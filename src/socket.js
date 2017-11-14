@@ -2,6 +2,7 @@ const socketio = require('socket.io');
 const dl = require('delivery');
 const fs = require('fs');
 
+// Note: How we are passing "server" to our module
 module.exports = (server) => {
   const io = socketio.listen(server.server); //Note server.server instead of just server
 

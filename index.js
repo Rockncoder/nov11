@@ -19,13 +19,13 @@ require('./src/handlers')(server);
 server.use(restify.plugins.queryParser({mapParams: true}));
 server.use(restify.plugins.bodyParser());
 
-// pre allows us to always
+// pre allows us to be notified before each REST call
 server.pre(function (req, res, next) {
   console.log(`IN: server.pre [${req.getPath()}]`);
   next();
 });
 
-// Applying JWT here protects all routes except those in the unless
+// Applying JWT here protects all routes except the token path
 server.use(rest_jwt({secret: constants.SECRET}).unless({path: ['/token']}));
 
 server.listen(constants.PORT, () => {

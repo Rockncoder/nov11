@@ -1,4 +1,9 @@
-
+Node Bootcamp 
+This app demonstrates using restify to create a microservice RESTful API in Node.js. 
+* The API use webtokens to secure
+* Shows how to decompose node apps using modules
+* Use socket.io to support messaging
+* More features coming later
 
 How this project was built:
 * mkdir nov11
@@ -6,7 +11,15 @@ How this project was built:
 * npm init
 * npm i -s restify bunyan restify-bunyan-logger restify-jwt-community jsonwebtoken socket.io delivery
 * Install Jasmine globally 
-* npm install -g -s jasmine
+* npm install -g jasmine
+
+### JSON Web Tokens
+
+In order to get a token, call the "/token" path with your email + password in the post body as JSON. It much match one of the accounts in users.js. 
+A token will be returned. Then return that token on all calls to subsequent paths in the header as a Bearer token:
+
+Authorization: Bearer <token>
+
 
 ### socket.io ###
 

@@ -46,6 +46,7 @@ const contactDeleteHandler = (req, res, next) => {
   next();
 };
 
+// Note: how we are passing "server" in
 module.exports = (server) => {
   server.post(routes.tokenRoute, tokenPostHandler);
   server.get(routes.contactAllRoute, contactGetAllHandler);
