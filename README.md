@@ -4,9 +4,9 @@ How this project was built:
 * mkdir nov11
 * cd nov11
 * npm init
-* npm i -s restify bunyan restify-bunyan-logger socket.io delivery
+* npm i -s restify bunyan restify-bunyan-logger restify-jwt-community jsonwebtoken socket.io delivery
 * Install Jasmine globally 
-* npm install -s jasmine
+* npm install -g -s jasmine
 
 ### socket.io ###
 
@@ -23,5 +23,6 @@ Tester:
 * https://socket.io/get-started/chat/
 * https://blog.risingstack.com/node-js-mysql-example-handling-hundred-gigabytes-of-data/
 * https://mariadb.org/mariadb-non-blocking-client-api-and-node-js/
-npm install restify-jwt* https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens
+* npm install restify-jwt* https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens
+* https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet
 
