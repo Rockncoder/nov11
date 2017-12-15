@@ -12,6 +12,7 @@
     "bunyan": "^1.8.12",
     "delivery": "0.0.6",
     "jsonwebtoken": "^8.1.0",
+    "node-fetch": "^1.7.3",
     "restify": "^6.3.2",
     "restify-bunyan-logger": "^2.0.7",
     "restify-jwt-community": "^0.5.4",

@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const users = require('./users');
 const routes = require('./routes');
+const CONSTANTS = require('./constants');
+
 
 const tokenPostHandler = (req, res, next) => {
   if (req.body.email && req.body.password) {
@@ -11,35 +13,40 @@ const tokenPostHandler = (req, res, next) => {
       const payload = {
         id: user.id
       };
-      const token = jwt.sign(payload, secret);
+      const token = jwt.sign(payload, CONSTANTS.SECRET);
       res.json({token});
-      // next();
+      // note: we don't next here
       return;
     }
   }
   res.send(401);
   next();
 };
+
 const contactGetAllHandler = (req, res, next) => {
   console.log("Hello contactGetAllHandler");
   res.send(`Get all`);
   next();
 };
+
 const contactGetHandler = (req, res, next) => {
   const id = req.params.id;
   res.send(`Get ${id}`);
   next();
 };
+
 const contactPostHandler = (req, res, next) => {
   const id = req.params.id;
   res.send(`Post ${id}`);
   next();
 };
+
 const contactPutHandler = (req, res, next) => {
   const id = req.params.id;
   res.send(`Put ${id}`);
   next();
 };
+
 const contactDeleteHandler = (req, res, next) => {
   const id = req.params.id;
   res.send(`Delete ${id}`);

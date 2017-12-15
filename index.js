@@ -12,12 +12,13 @@ server.use(function (req, res, next) {
   console.info('IN: server.use');
   return next();
 });
-require('./src/socket')(server);
-require('./src/handlers')(server);
 
 // we need both queryParam & bodyParser plugins
-server.use(restify.plugins.queryParser({mapParams: true}));
+server.use(restify.plugins.acceptParser(server.acceptable));
+server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
+require('./src/socket')(server);
+require('./src/handlers')(server);
 
 // pre allows us to be notified before each REST call
 server.pre(function (req, res, next) {
