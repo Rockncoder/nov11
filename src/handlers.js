@@ -2,8 +2,11 @@ const jwt = require('jsonwebtoken');
 const users = require('./users');
 const routes = require('./routes');
 const CONSTANTS = require('./constants');
+const streams = require('./streaming');
+const Vehicle = require('../models/Vehicles');
 
 
+let counter = 0;
 const tokenPostHandler = (req, res, next) => {
   if (req.body.email && req.body.password) {
     const email = req.body.email;
@@ -53,6 +56,30 @@ const contactDeleteHandler = (req, res, next) => {
   next();
 };
 
+const streamGetHandler = (req, res, next ) => {
+  res.setHeader('content-type', 'text/plain');
+  streams.readStream2(req, res);
+  res.write(`GET STREAM\n`);
+  next();
+};
+
+const streamGetHandler2 = (req, res, next ) => {
+  Vehicle.find({}, (err, vehicle) => {
+    if (err) return console.error(err);
+    res.json(vehicle);
+  }).limit(CONSTANTS.PAGE_COUNT);
+};
+
+const streamGetHandler3 = (req, res, next ) => {
+  const cursor = Vehicle.find({}).cursor();
+  cursor.on('data', doc => {
+    res.write(doc);
+  });
+  cursor.on('end', () => {
+    res.end();
+  });
+};
+
 // Note: how we are passing "server" in
 module.exports = (server) => {
   server.post(routes.tokenRoute, tokenPostHandler);
@@ -61,6 +88,8 @@ module.exports = (server) => {
   server.post(routes.contactRoute, contactPostHandler);
   server.put(routes.contactRoute, contactPutHandler);
   server.del(routes.contactRoute, contactDeleteHandler);
+  server.get(routes.streamRoute, streamGetHandler2);
+  server.get(routes.streamRoute3, streamGetHandler3);
 
   return {
     tokenPostHandler,

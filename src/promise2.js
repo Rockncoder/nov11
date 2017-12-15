@@ -18,6 +18,7 @@ const httpGet = (url) => {
   })
 };
 
-httpGet(constants.GOOD_URL).then(
+httpGet(constants.BAD_URL).then(
   data => console.log(data),
   err => console.log(err));
+console.log('Hello from promise2');

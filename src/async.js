@@ -12,7 +12,7 @@ const BAD_URL = 'http://jsonplaceholder.typicodeXXXXX.com/posts/1';
 async function fetchItOld(url) {
   try {
     const data = await fetch(url);
-    return await(data.json());
+    return await data.json();
   } catch (e) {
     return await Promise.reject(e);
   }
@@ -30,7 +30,7 @@ const fetchIt = async (url) => {
 
 // KEEP Mind that Node waits until all processes finish before exiting
 
-fetchIt(BAD_URL)
+fetchIt(GOOD_URL)
   .then(data => {
     console.log(data);
   }, error => {

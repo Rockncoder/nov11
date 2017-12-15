@@ -5,6 +5,8 @@ const restifyBunyanLogger = require('restify-bunyan-logger');
 const constants = require('./src/constants');
 const name = 'picklerick';
 const log = new Logger({name});
+const db = require('./src/db');
+
 const server = restify.createServer({name, log});
 server.on('after', restifyBunyanLogger());
 // If you want to intercept before each call
